@@ -13,10 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - CrossCutting", "4 - CrossCutting", "{70025CE4-601A-48F9-8A8C-CD2B30037458}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 -  DataBase", "5 -  DataBase", "{5F89BE01-54D1-4533-A459-6FE1B0DEEBDC}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DB_OA", "DB_OA\DB_OA.sqlproj", "{388165FD-CD7C-41E0-B49E-C835211E947C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Assessement.Contacts.Api", "open_assessemnt_contacts.Api\Open.Assessement.Contacts.Api.csproj", "{BD3D3DBA-72F5-4715-8D0A-4ABCB7C44745}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Assessement.ContactsApplication", "open_assessemnt_contacts.Application\Open.Assessement.ContactsApplication.csproj", "{3DD8A8AC-4770-46D6-95B0-F419A9CD781E}"
