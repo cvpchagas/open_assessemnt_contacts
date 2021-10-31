@@ -59,11 +59,11 @@ namespace Open.Assessement.Contacts.Api.Controllers
         /// <response code="200">Contact created successfully.</response>      
         /// <response code="400">Business error was returned.</response>
         /// <response code="500">System error was returned.</response> 
-        [HttpPut()]
+        [HttpPost()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put([FromBody] Contact contact)
+        public async Task<IActionResult> Post([FromBody] Contact contact)
         {
             try
             {
@@ -94,11 +94,11 @@ namespace Open.Assessement.Contacts.Api.Controllers
         /// <response code="200">Contact updated successfully.</response>      
         /// <response code="400">Business error was returned.</response>
         /// <response code="500">System error was returned.</response> 
-        [HttpPost()]
+        [HttpPut()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Update([FromBody] Contact contact)
+        public async Task<IActionResult> Put([FromBody] Contact contact)
         {
             try
             {
