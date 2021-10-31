@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.24" />
+    <PackageReference Include="Hangfire.MemoryStorage.Core" Version="1.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\open_assessemnt_contacts.Domain\Open.Assessement.Contacts.Domain.csproj" />
+    <ProjectReference Include="..\open_assessemnt_contacts.Infra\Open.Assessement.Contacts.Infra.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+	  <TargetFramework>netcoreapp3.1</TargetFramework> 
+  </PropertyGroup>
+
+</Project>
