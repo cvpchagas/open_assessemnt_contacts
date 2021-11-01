@@ -17,13 +17,13 @@ namespace Open.Assessement.Contacts.Application.Services
         public async Task<List<Contact>> GetAll()
         => await _ContactDomainService.GetAll();
 
-        public async Task<Contact> Insert(Contact contact)
+        public async Task<string> Insert(Contact contact)
         => await _ContactDomainService.Insert(contact);
 
-        public async Task<Contact> Update(Contact contact)
+        public async Task<string> Update(Contact contact)
        => await _ContactDomainService.Update(contact);
 
-        public async Task<Contact> Delete(int id)
+        public async Task<string> Delete(int id)
        => await _ContactDomainService.Delete(id);
 
         public async Task<bool> CPFValidate(string cpf)

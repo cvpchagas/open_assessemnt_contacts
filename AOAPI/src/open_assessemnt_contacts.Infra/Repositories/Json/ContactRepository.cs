@@ -43,7 +43,7 @@ namespace Open.Assessement.Contacts.Infra.Repositories.Json
                                 reg.Birthday = item["Birthday"].ToString().ConvertToDateTime();
                                 reg.BirthdayString = item["Birthday"].ToString();
                             } 
-                            reg.Gender = item["Name"].ToString();
+                            reg.Gender = item["Gender"].ToString();
                             reg.AddressCountry = item["AddressCountry"].ToString();
                             reg.AddressZipCode = item["AddressZipCode"].ToString();
                             reg.AddressState = item["AddressState"].ToString();

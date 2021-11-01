@@ -29,40 +29,47 @@ namespace Open.Assessement.Contacts.Domain.Services
             return resultlist;
         }
 
-        public async Task<Contact> Insert(Contact contact)
+        public async Task<string> Insert(Contact contact)
         {
 
-            Contact result = new Contact();
+            Contact contactresult = new Contact();
+            string result = string.Empty;
             this.ValidRules(contact);
 
             if (!string.IsNullOrEmpty(contact.BirthdayString) ) 
                 contact.Birthday = contact.BirthdayString.ConvertToDateTime();
 
-            if (_ContactRepository.InsertDB(contact)) result = contact;
+            if (_ContactRepository.InsertDB(contact)) contactresult = contact;
+            if (contactresult.Id > 0) result = $"Contact {contactresult.Name} (CPF: {contactresult.CPF}) was successfully registered.";
+
             return result;
         }
 
-        public async Task<Contact> Update(Contact contact)
+        public async Task<string> Update(Contact contact)
         {
-            Contact result = new Contact();
-            this.ValidRules(contact,"update");
+            Contact contactresult = new Contact();
+            string result = string.Empty;
             if (!string.IsNullOrEmpty(contact.BirthdayString))
                 contact.Birthday = contact.BirthdayString.ConvertToDateTime();
 
-            if (_ContactRepository.UpadtetDB(contact)) result = contact;
+            if (_ContactRepository.UpadtetDB(contact)) contactresult = contact;
+            if (contactresult.Id > 0) result = $"Contact {contactresult.Name} (CPF: {contactresult.CPF}) has been updated successfully.";
             return result;
         }
 
-        public async Task<Contact> Delete(int id)
+        public async Task<string> Delete(int id)
         {
-            Contact result = new Contact();
+            Contact contactresult = new Contact();
+            string result = string.Empty;
             if (id <= 0) throw new ExceptionBusiness($"Contact Id cannot be null.");
             
             var contact = _ContactRepository.GetDB().Where(x => x.Id == id).FirstOrDefault();
 
             if (contact==null) throw new ExceptionBusiness($"Contact not found with id {id}");
+            if (_ContactRepository.DeleteDB(contact)) contactresult = contact;
+            if (contactresult.Id > 0) result = $"Contact {contactresult.Name} (CPF: {contactresult.CPF}) has been removed successfully.";
 
-            if (_ContactRepository.DeleteDB(contact)) result = contact;
+
             return result;
         }
 
@@ -99,7 +106,7 @@ namespace Open.Assessement.Contacts.Domain.Services
                                                         && x.Id != contact.Id
                          ).Count();
 
-                            if (countduplicateds > 0) throw new ExceptionBusiness($"There is already another contact with the same name and CPF.");
+                            if (countduplicateds > 0) throw new ExceptionBusiness($"There is already another contact with the same name { contact.Name} and CPF {contact.CPF}.");
 
                         }
                     }
