@@ -10,17 +10,17 @@ This API allows you to perform the following features:
     5. Validate if the CPF of a contact is valid;
     6. List all registered countries;
     7. List all registered genders;
+
 # Getting Started
     1. API references:
         1.1. https://localhost:44378/swagger/index.html 
 
 # Build and Test
-
-1. To run the api, please follow the steps below:
     
-    1.1. Open the solution open_assessemnt_contacts\AOAPI\src\Open.Assessement.Contacts.sln
-    1.2. set as project to start the project 0 - API\Open.Assessement.Contacts.Api
-    1.3. press the F5 key
+    1.  To run the api, please follow the steps below:
+        1.1. Open the solution open_assessemnt_contacts\AOAPI\src\Open.Assessement.Contacts.sln
+        1.2. set as project to start the project 0 - API\Open.Assessement.Contacts.Api
+        1.3. press the F5 key
 
 # Contribute
 
