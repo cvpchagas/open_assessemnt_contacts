@@ -1,0 +1,53 @@
+<form>
+    <input type="hidden" name="Id" [value]="service.formData.Id" />
+    <div class="form-group">
+        <span class="text-danger">*</span></label><label>Name:</label>
+        <input class="form-control form-contol-lg" placeholder="Contact Name" name="Name" #Name="ng-model" max="200"
+            [(ngModel)]="service.formData.Name" ng-required="required">
+    </div>
+    <div class="form-group">
+        </label><label>CPF:</label>
+        <input class="form-control form-contol-lg" placeholder="000.000.000-00" mask="000.000.000-00" max="14"
+            name="CPF" #Name="ng-model" [(ngModel)]="service.formData.CPF">
+    </div>
+    <div class="form-group">
+        </label><label>Birthday:</label>
+        <input class="form-control form-contol-lg" placeholder="" mask="YYYY-MM-DD" max="10" name="BirthdayString"
+            #Name="ng-model" [(ngModel)]="service.formData.BirthdayString">
+    </div>
+    <div class="form-group">
+        </label><label>Gender:</label>
+        <input class="form-control form-contol-lg" placeholder="" max="200" name="Gender" #Name="ng-model"
+            [(ngModel)]="service.formData.Gender">
+    </div>
+    <div class="form-group">
+        </label><label>Zip Code:</label>
+        <input class="form-control form-contol-lg" placeholder="Contact Zip Code" max="200" name="AddressZipCode" #Name="ng-model"
+            [(ngModel)]="service.formData.AddressZipCode">
+    </div>
+    <div class="form-group">
+    </label><label>Country:</label>
+    <input class="form-control form-contol-lg" placeholder="Contact Country" max="200" name="AddressCountry" #Name="ng-model"
+        [(ngModel)]="service.formData.AddressCountry">
+</div>
+<div class="form-group">
+</label><label>State:</label>
+<input class="form-control form-contol-lg" placeholder="Contact State" max="2" name="AddressCountry" #Name="ng-model"
+    [(ngModel)]="service.formData.AddressState">
+</div>
+<div class="form-group">
+</label><label>City:</label>
+<input class="form-control form-contol-lg" placeholder="Contact City" max="200" name="AddressCity" #Name="ng-model"
+    [(ngModel)]="service.formData.AddressCity">
+</div>
+<div class="form-group">
+</label><label>Address:</label>
+<input class="form-control form-contol-lg" placeholder="Contact Address Line 1" max="500" name="AddressDescription" #Name="ng-model"
+    [(ngModel)]="service.formData.AddressDescription">
+</div>
+<div class="form-group">
+</label><label>Address Complement:</label>
+<input class="form-control form-contol-lg" placeholder="Contact Address Line 2" max="1000" name="Addresscomplement" #Name="ng-model"
+    [(ngModel)]="service.formData.Addresscomplement">
+</div>
+</form>
