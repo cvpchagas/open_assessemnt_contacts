@@ -29,7 +29,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
     <StartupObject></StartupObject>
-    <NoWin32Manifest>true</NoWin32Manifest>    
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <Authors>Carlos Chagas</Authors>    
   </PropertyGroup>
 
 
