@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
+    <Compile Remove="Controllers\CountryController.cs" />
+    <Compile Remove="Controllers\GenderController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HttpClient\HttpClientService.csproj" />
     <ProjectReference Include="..\open_assessemnt_contacts.Application\Open.Assessement.ContactsApplication.csproj" />
     <ProjectReference Include="..\open_assessemnt_contacts.Crosscutting\Open.Assessement.Contacts.Crosscutting.csproj" />

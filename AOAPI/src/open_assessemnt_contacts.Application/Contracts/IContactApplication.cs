@@ -7,9 +7,10 @@ namespace Open.Assessement.Contacts.Application.Contracts
     public interface IContactApplication
     {
         Task<List<Contact>> GetAll();
-        Task<string> Insert(Contact contact);
-        Task<string> Update(Contact contact);
-        Task<string> Delete(int id);
+        Task<Contact> GetContact(int id);
+        Task<Contact> Insert(Contact contact);
+        Task<Contact> Update(Contact contact);
+        Task<Contact> Delete(int id);
         Task<bool> CPFValidate(string cpf);
     }
 }

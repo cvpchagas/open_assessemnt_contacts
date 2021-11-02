@@ -9,40 +9,40 @@ namespace Open.Assessement.Contacts.Crosscutting.Dtos
     public class Contact
     {
         [Description("Contact Identifier")]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [Required]
         [Description("Contact Name")]
-        public string Name { get; set; }
+        public string name { get; set; }
 
         [Description("Contact CPF Code")]
-        public string CPF { get; set; }
+        public string cpf { get; set; }
 
-        [Description("Contact Birthday Date")]
-        public DateTime? Birthday { get; set; }
+        //[Description("Contact Birthday Date")]
+        //public DateTime? Birthday { get; set; }
 
         [Description("Contact Birthday Date String ")]
-        public string BirthdayString { get; set; }
+        public string birthday { get; set; }
 
         [Description("Contact  Gender" )]
-        public string Gender { get; set; }
+        public string gender { get; set; }
 
         [Description("Address ZipCode")]
-        public string AddressZipCode { get; set; }
+        public string addressZipCode { get; set; }
 
         [Description("Address Coutry")]
-        public string AddressCountry { get; set; }
+        public string addressCountry { get; set; }
 
         [Description("Address State")]
-        public string AddressState { get; set; }
+        public string addressState { get; set; }
 
         [Description("Address City")]
-        public string AddressCity { get; set; }
+        public string addressCity { get; set; }
 
         [Description("Address Description")]
-        public string AddressDescription { get; set; }
+        public string addressDescription { get; set; }
 
         [Description("Address Complement")]
-        public string Addresscomplement { get; set; }
+        public string addressComplement { get; set; }
     }
 }

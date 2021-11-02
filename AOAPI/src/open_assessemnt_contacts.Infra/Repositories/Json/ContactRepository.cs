@@ -35,21 +35,18 @@ namespace Open.Assessement.Contacts.Infra.Repositories.Json
                         {
 
                             Contact reg = new Contact();
-                            reg.Id = int.Parse(item["Id"].ToString());
-                            reg.Name = item["Name"].ToString();
-                            reg.CPF = item["CPF"].ToString();
-                            if (!string.IsNullOrEmpty(item["Birthday"].ToString()))
-                            {
-                                reg.Birthday = item["Birthday"].ToString().ConvertToDateTime();
-                                reg.BirthdayString = item["Birthday"].ToString();
-                            } 
-                            reg.Gender = item["Gender"].ToString();
-                            reg.AddressCountry = item["AddressCountry"].ToString();
-                            reg.AddressZipCode = item["AddressZipCode"].ToString();
-                            reg.AddressState = item["AddressState"].ToString();
-                            reg.AddressCity = item["AddressCity"].ToString();
-                            reg.AddressDescription = item["AddressDescription"].ToString();
-                            reg.Addresscomplement = item["Addresscomplement"].ToString();
+                            reg.id = int.Parse(item["id"].ToString());
+                            reg.name = item["name"].ToString();
+                            reg.cpf = item["cpf"].ToString();
+  
+                            reg.birthday = item["birthday"].ToString();
+                            reg.gender = item["gender"].ToString();
+                            reg.addressCountry = item["addressCountry"].ToString();
+                            reg.addressZipCode = item["addressZipCode"].ToString();
+                            reg.addressState = item["addressState"].ToString();
+                            reg.addressCity = item["addressCity"].ToString();
+                            reg.addressDescription = item["addressDescription"].ToString();
+                            reg.addressComplement = item["addressComplement"].ToString();
 
                             genders.Add(reg);
                         }
@@ -65,9 +62,9 @@ namespace Open.Assessement.Contacts.Infra.Repositories.Json
 
         }
 
-        public bool InsertDB( Contact contact)
+        public Contact InsertDB( Contact contact)
         {
-            bool result = false;
+            Contact result = new Contact();
             int idNewItem = 1;
             try
             {
@@ -77,17 +74,17 @@ namespace Open.Assessement.Contacts.Infra.Repositories.Json
                     contacts = this.GetDB().ToList();
                     if (contacts.Count > 0)
                     {
-                        idNewItem = contacts.OrderByDescending(i => i.Id).Select(x => x.Id).FirstOrDefault() + 1;
-                        contact.Id = idNewItem;
-                        contacts = contacts.OrderBy(x => x.Id).ToList();
+                        idNewItem = contacts.OrderByDescending(i => i.id).Select(x => x.id).FirstOrDefault() + 1;
+                        contact.id = idNewItem;
+                        contacts = contacts.OrderBy(x => x.id).ToList();
                     }
-                    contact.Id = idNewItem;
+                    contact.id = idNewItem;
                     contacts.Add(contact);
                     string filepath = @$"{_connstringOAJson}{tb_name}";
                     JsonExtension.ReplaceFile(filepath, contacts);
-                    result = true;
+                    result = contact;
                 }
-                return result;
+                return contact;
             }
             
             catch (Exception ex)
@@ -96,9 +93,9 @@ namespace Open.Assessement.Contacts.Infra.Repositories.Json
             }
         }
 
-        public bool UpadtetDB(Contact contact)
+        public Contact UpadtetDB(Contact contact)
         {
-            bool result = false;
+            Contact result = new Contact();
             try
             {
                 if (contact != null)
@@ -107,14 +104,14 @@ namespace Open.Assessement.Contacts.Infra.Repositories.Json
                     contacts = this.GetDB().ToList();
                     if (contacts.Count > 0)
                     {
-                        var contactold = contacts.Where(x => x.Id == contact.Id).FirstOrDefault();
+                        var contactold = contacts.Where(x => x.id == contact.id).FirstOrDefault();
                         contacts.Remove(contactold);
                         contacts.Add(contact);
-                        contacts = contacts.OrderBy(x => x.Id).ToList();
+                        contacts = contacts.OrderBy(x => x.id).ToList();
                         string filepath = @$"{_connstringOAJson}{tb_name}";
                         JsonExtension.ReplaceFile(filepath, contacts);
 
-                        result = true;
+                        result = contact;
                     }
    
                     
@@ -139,9 +136,9 @@ namespace Open.Assessement.Contacts.Infra.Repositories.Json
                     contacts = this.GetDB().ToList();
                     if (contacts.Count > 0)
                     {
-                        var contactold = contacts.Where(x => x.Id == contact.Id).FirstOrDefault();
+                        var contactold = contacts.Where(x => x.id == contact.id).FirstOrDefault();
                         contacts.Remove(contactold);
-                        contacts = contacts.OrderBy(x => x.Id).ToList();
+                        contacts = contacts.OrderBy(x => x.id).ToList();
                         string filepath = @$"{_connstringOAJson}{tb_name}";
                         JsonExtension.ReplaceFile(filepath, contacts);
 

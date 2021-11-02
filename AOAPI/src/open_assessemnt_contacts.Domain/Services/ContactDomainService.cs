@@ -29,48 +29,50 @@ namespace Open.Assessement.Contacts.Domain.Services
             return resultlist;
         }
 
-        public async Task<string> Insert(Contact contact)
+
+        public async Task<Contact> GetContact(int id)
         {
-
-            Contact contactresult = new Contact();
-            string result = string.Empty;
-            this.ValidRules(contact);
-
-            if (!string.IsNullOrEmpty(contact.BirthdayString) ) 
-                contact.Birthday = contact.BirthdayString.ConvertToDateTime();
-
-            if (_ContactRepository.InsertDB(contact)) contactresult = contact;
-            if (contactresult.Id > 0) result = $"Contact {contactresult.Name} (CPF: {contactresult.CPF}) was successfully registered.";
-
+            List<Contact> resultlist = new List<Contact>();
+            Contact result = new Contact();
+            resultlist = _ContactRepository.GetDB();
+            if (resultlist.Count > 0)
+                result = resultlist.ToList().Where(x => x.id == id).FirstOrDefault();
             return result;
         }
 
-        public async Task<string> Update(Contact contact)
+        public async Task<Contact> Insert(Contact contact)
         {
             Contact contactresult = new Contact();
-            string result = string.Empty;
-            if (!string.IsNullOrEmpty(contact.BirthdayString))
-                contact.Birthday = contact.BirthdayString.ConvertToDateTime();
 
-            if (_ContactRepository.UpadtetDB(contact)) contactresult = contact;
-            if (contactresult.Id > 0) result = $"Contact {contactresult.Name} (CPF: {contactresult.CPF}) has been updated successfully.";
-            return result;
+            this.ValidRules(contact, "insert");
+
+            contactresult = _ContactRepository.InsertDB(contact);
+
+            return contactresult;
         }
 
-        public async Task<string> Delete(int id)
+        public async Task<Contact> Update(Contact contact)
         {
             Contact contactresult = new Contact();
-            string result = string.Empty;
-            if (id <= 0) throw new ExceptionBusiness($"Contact Id cannot be null.");
+
+            this.ValidRules(contact, "update");
+
+            contactresult = _ContactRepository.UpadtetDB(contact);
+
+            return contactresult;
+        }
+
+        public async Task<Contact> Delete(int id)
+        {
+            Contact contactresult = new Contact();
+            if (id <=0) throw new ExceptionBusiness($"Contact Id cannot be null.");
             
-            var contact = _ContactRepository.GetDB().Where(x => x.Id == id).FirstOrDefault();
+            var contact = _ContactRepository.GetDB().Where(x => x.id == id).FirstOrDefault();
 
-            if (contact==null) throw new ExceptionBusiness($"Contact not found with id {id}");
+            if (contact==null) throw new ExceptionBusiness($"Cannot found contact with id: {id}.");
             if (_ContactRepository.DeleteDB(contact)) contactresult = contact;
-            if (contactresult.Id > 0) result = $"Contact {contactresult.Name} (CPF: {contactresult.CPF}) has been removed successfully.";
 
-
-            return result;
+            return contactresult;
         }
 
         public async Task<bool> CPFValidate(string cpf)
@@ -87,33 +89,29 @@ namespace Open.Assessement.Contacts.Domain.Services
             if (contact == null) throw new ExceptionBusiness($"Contact cannot be null.");
             if (contact != null)
             {
-                if (operation == "insert" && contact.Id > 0) throw new ExceptionBusiness($"Contact Id can be null.");
-                if (operation == "update" && contact.Id <=0) throw new ExceptionBusiness($"Contact Id cannot be null.");
-                if (String.IsNullOrEmpty(contact.Name)) throw new ExceptionBusiness($"Contact's name is required.");
-                if(!String.IsNullOrEmpty(contact.CPF))
+                if (operation == "insert" && contact.id > 0) throw new ExceptionBusiness($"Contact Id can be null.");
+                if (operation == "update" && contact.id <=0 ) throw new ExceptionBusiness($"Contact Id cannot be null.");
+                if (String.IsNullOrEmpty(contact.name)) throw new ExceptionBusiness($"Contact's name is required.");
+                if(!String.IsNullOrEmpty(contact.cpf))
                 {
-                    if(! CPFVerify(contact.CPF)) throw new ExceptionBusiness($"The contact's CPF is invalid.");
-                    if(operation == "insert")
-                    {
+                    if(! CPFVerify(contact.cpf)) throw new ExceptionBusiness($"The contact's CPF is invalid.");
+                    //if(operation == "insert")
+                    //{
                         List<Contact> contacts = new List<Contact>();
                         contacts = _ContactRepository.GetDB().ToList();
 
                         if (contacts.Count > 0)
                         {
                             int countduplicateds = contacts.Where(x =>
-                                                            x.CPF?.ToLower().Trim() == contact.CPF?.ToLower().Trim()
-                                                        && x.Name?.ToLower().Trim() == contact.Name?.ToLower().Trim()
-                                                        && x.Id != contact.Id
+                                                            x.cpf?.ToLower().Trim() == contact.cpf?.ToLower().Trim()
+                                                        && x.name?.ToLower().Trim() == contact.name?.ToLower().Trim()
+                                                        && x.id != contact.id
                          ).Count();
 
-                            if (countduplicateds > 0) throw new ExceptionBusiness($"There is already another contact with the same name { contact.Name} and CPF {contact.CPF}.");
+                            if (countduplicateds > 0) throw new ExceptionBusiness($"There is already another contact with the same name { contact.name} and CPF {contact.cpf}.");
 
                         }
-                    }
-                    
-
-                    
-                    
+                    //}
                 }
             }
 
